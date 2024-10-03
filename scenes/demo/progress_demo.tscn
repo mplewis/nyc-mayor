@@ -1,31 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://sqsstambqvu4"]
+[gd_scene load_steps=5 format=3 uid="uid://sqsstambqvu4"]
 
 [ext_resource type="PackedScene" uid="uid://c22f7s7ftd88b" path="res://scenes/ui/progress.tscn" id="1_0pfaq"]
 [ext_resource type="Texture2D" uid="uid://bfn3bgjdvyk2s" path="res://assets/ui/thermometer.png" id="2_n7o43"]
+[ext_resource type="Texture2D" uid="uid://cxy1mype1c6w7" path="res://assets/ui/thermometer-fill.png" id="3_lsxma"]
 [ext_resource type="Texture2D" uid="uid://c7xqve3nrbap1" path="res://assets/ui/red_star.png" id="4_kocyf"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_61c0g"]
-load_path = "res://.godot/imported/thermometer-fill.png-fb87b5e3020acef00cf48bf0829a76af.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_x4gi5"]
-atlas = SubResource("CompressedTexture2D_61c0g")
-region = Rect2(0, 0, 77.05, 0)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_carsh"]
-load_path = "res://.godot/imported/thermometer-fill.png-fb87b5e3020acef00cf48bf0829a76af.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e48fa"]
-atlas = SubResource("CompressedTexture2D_carsh")
-region = Rect2(0, 0, 104.8, 0)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mnt13"]
-load_path = "res://.godot/imported/thermometer-fill.png-fb87b5e3020acef00cf48bf0829a76af.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vcvxa"]
-atlas = SubResource("CompressedTexture2D_mnt13")
-region = Rect2(0, 0, 53.74, 0)
-
 [node name="ProgressDemo" type="Control"]
+texture_filter = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,11 +16,11 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 128.0
-offset_bottom = 16.0
+offset_right = 132.0
+offset_bottom = 61.0
 
 [node name="Progress" parent="VBoxContainer" instance=ExtResource("1_0pfaq")]
-custom_minimum_size = Vector2(19, 16)
+custom_minimum_size = Vector2(56, 16)
 layout_mode = 2
 progress = 0.55
 
@@ -56,26 +37,31 @@ patch_margin_top = 8
 patch_margin_right = 3
 patch_margin_bottom = 8
 
-[node name="Inner" type="TextureRect" parent="VBoxContainer/Progress"]
+[node name="Inner" type="NinePatchRect" parent="VBoxContainer/Progress"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -52.75
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.601953, 1)
-texture = SubResource("AtlasTexture_x4gi5")
+texture = ExtResource("3_lsxma")
+patch_margin_left = 16
+patch_margin_top = 8
+patch_margin_right = 3
+patch_margin_bottom = 8
 
 [node name="Pointer" type="TextureRect" parent="VBoxContainer/Progress"]
 layout_mode = 0
-offset_left = 69.05
-offset_right = 85.05
+offset_left = 71.25
+offset_right = 87.25
 offset_bottom = 16.0
 texture = ExtResource("4_kocyf")
 
 [node name="Progress2" parent="VBoxContainer" instance=ExtResource("1_0pfaq")]
-custom_minimum_size = Vector2(19, 16)
+custom_minimum_size = Vector2(56, 16)
 layout_mode = 2
+progress = 0.28
 
 [node name="Outer" type="NinePatchRect" parent="VBoxContainer/Progress2"]
 layout_mode = 1
@@ -90,20 +76,31 @@ patch_margin_top = 8
 patch_margin_right = 3
 patch_margin_bottom = 8
 
-[node name="Inner" type="TextureRect" parent="VBoxContainer/Progress2"]
+[node name="Inner" type="NinePatchRect" parent="VBoxContainer/Progress2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -83.8
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.81875, 1)
-texture = SubResource("AtlasTexture_e48fa")
+texture = ExtResource("3_lsxma")
+patch_margin_left = 16
+patch_margin_top = 8
+patch_margin_right = 3
+patch_margin_bottom = 8
+
+[node name="Pointer" type="TextureRect" parent="VBoxContainer/Progress2"]
+layout_mode = 0
+offset_left = 40.2
+offset_right = 56.2
+offset_bottom = 16.0
+texture = ExtResource("4_kocyf")
 
 [node name="Progress3" parent="VBoxContainer" instance=ExtResource("1_0pfaq")]
-custom_minimum_size = Vector2(19, 16)
+custom_minimum_size = Vector2(56, 16)
 layout_mode = 2
-progress = 0.34
+progress = 0.81
 
 [node name="Outer" type="NinePatchRect" parent="VBoxContainer/Progress3"]
 layout_mode = 1
@@ -118,19 +115,23 @@ patch_margin_top = 8
 patch_margin_right = 3
 patch_margin_bottom = 8
 
-[node name="Inner" type="TextureRect" parent="VBoxContainer/Progress3"]
+[node name="Inner" type="NinePatchRect" parent="VBoxContainer/Progress3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -22.85
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.419844, 1)
-texture = SubResource("AtlasTexture_vcvxa")
+texture = ExtResource("3_lsxma")
+patch_margin_left = 16
+patch_margin_top = 8
+patch_margin_right = 3
+patch_margin_bottom = 8
 
 [node name="Pointer" type="TextureRect" parent="VBoxContainer/Progress3"]
 layout_mode = 0
-offset_left = 45.74
-offset_right = 61.74
+offset_left = 101.15
+offset_right = 117.15
 offset_bottom = 16.0
 texture = ExtResource("4_kocyf")

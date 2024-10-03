@@ -7,7 +7,7 @@ extends Control
 @export var margin_right_px: int = 0
 
 @onready var outer: NinePatchRect = $Outer
-@onready var inner: TextureRect = $Inner
+@onready var inner: NinePatchRect = $Inner
 @onready var pointer: TextureRect = $Pointer
 
 var ok := false
@@ -17,9 +17,6 @@ func _ready():
 	assert(outer, "Outer texture not found")
 	assert(inner, "Inner texture not found")
 
-	size = outer.size
-	custom_minimum_size = outer.size
-
 	ok = true
 
 
@@ -27,15 +24,18 @@ func _process(_delta):
 	if not ok:
 		return
 
+	outer.position = Vector2(0, 0)
+	inner.position = Vector2(0, outer.size.y / 2 - inner.size.y / 2)
+	pointer.position.y = outer.size.y / 2 - pointer.size.y / 2
+
 	var p = clamp(progress, 0, 1)
 	var total_width := outer.size.x
-	p = _convert_scale(p, 0, 1, margin_left_px, total_width - margin_right_px) / total_width
+	var progress_pos_x = _convert_scale(p, 0, 1, margin_left_px, total_width - margin_right_px)
 
-	inner.texture.region.size.x = clamp(p * total_width, 0, total_width)
-	inner.scale.x = p
+	inner.size.x = progress_pos_x
 
 	if pointer:
-		pointer.position.x = inner.position.x + inner.texture.region.size.x - pointer.size.x / 2
+		pointer.position.x = inner.position.x + progress_pos_x - pointer.size.x / 2
 
 
 func _convert_scale(
