@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c22f7s7ftd88b"]
+
+[ext_resource type="Texture2D" uid="uid://bfn3bgjdvyk2s" path="res://assets/ui/thermometer.png" id="1_i0ebt"]
+[ext_resource type="Script" path="res://scenes/ui/progress.gd" id="1_l4ghl"]
+[ext_resource type="Texture2D" uid="uid://cxy1mype1c6w7" path="res://assets/ui/thermometer-fill.png" id="3_stvhv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcpbb"]
+atlas = ExtResource("3_stvhv")
+region = Rect2(0, 0, 104.8, 0)
+
+[node name="Progress" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = -624.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l4ghl")
+margin_left_px = 16
+margin_right_px = 1
+
+[node name="Outer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_i0ebt")
+patch_margin_left = 16
+patch_margin_top = 8
+patch_margin_right = 3
+patch_margin_bottom = 8
+
+[node name="Inner" type="TextureRect" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.81875, 1)
+texture = SubResource("AtlasTexture_rcpbb")
